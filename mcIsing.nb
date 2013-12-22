@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     62645,       1571]
-NotebookOptionsPosition[     60855,       1510]
-NotebookOutlinePosition[     61232,       1526]
-CellTagsIndexPosition[     61189,       1523]
+NotebookDataLength[     92436,       2342]
+NotebookOptionsPosition[     88646,       2233]
+NotebookOutlinePosition[     89023,       2249]
+CellTagsIndexPosition[     88980,       2246]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -844,6 +844,729 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"n", "=", "20"}], ";", 
   RowBox[{"j", "=", "1"}], ";", 
+  RowBox[{"steps", "=", "10000"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Beta]s", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{"\[Beta]", ",", 
+     RowBox[{"{", 
+      RowBox[{"\[Beta]", ",", "0.0", ",", "0.7", ",", "0.01"}], "}"}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"s", "=", 
+   RowBox[{"AbsoluteTiming", "[", 
+    RowBox[{"Parallelize", "[", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"mcSim", "[", 
+        RowBox[{
+         RowBox[{"\[Beta]s", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", "j", ",", "n", ",", "steps"}], 
+        "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", 
+         RowBox[{
+          RowBox[{"Dimensions", "[", "\[Beta]s", "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"s", "[", 
+  RowBox[{"[", "1", "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sim\[Beta]var", "=", 
+   RowBox[{"s", "[", 
+    RowBox[{"[", "2", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sim\[Beta]var", "=", 
+   RowBox[{"sim\[Beta]var", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", 
+      RowBox[{"2001", ";;", 
+       RowBox[{"-", "1"}]}]}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ms", "=", 
+   RowBox[{"Parallelize", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"magnetization", "[", 
+       RowBox[{
+        RowBox[{"sim\[Beta]var", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], ",", "n"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", 
+        RowBox[{
+         RowBox[{"Dimensions", "[", "sim\[Beta]var", "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"p1", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[Beta]s", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], ",", 
+       RowBox[{"ms", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{
+        RowBox[{"Dimensions", "[", "\[Beta]s", "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListLinePlot", "[", 
+  RowBox[{"p", ",", 
+   RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"suscepts", "=", 
+   RowBox[{"Parallelize", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"suscept", "[", 
+       RowBox[{
+        RowBox[{"ms", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], ",", 
+        RowBox[{"magnetizationSq", "[", 
+         RowBox[{
+          RowBox[{"sim\[Beta]var", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], ",", "n"}], "]"}], ",", 
+        RowBox[{"\[Beta]s", "[", 
+         RowBox[{"[", "i", "]"}], "]"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", 
+        RowBox[{
+         RowBox[{"Dimensions", "[", "sim\[Beta]var", "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"p2", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[Beta]s", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], ",", 
+       RowBox[{"suscepts", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{
+        RowBox[{"Dimensions", "[", "\[Beta]s", "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListLinePlot", "[", 
+  RowBox[{"p2", ",", 
+   RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"heats", "=", 
+   RowBox[{"Parallelize", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"specificHeat", "[", 
+       RowBox[{
+        RowBox[{"energy", "[", 
+         RowBox[{
+          RowBox[{"sim\[Beta]var", "[", 
+           RowBox[{"[", "k", "]"}], "]"}], ",", "j"}], "]"}], ",", 
+        RowBox[{"energySq", "[", 
+         RowBox[{
+          RowBox[{"sim\[Beta]var", "[", 
+           RowBox[{"[", "k", "]"}], "]"}], ",", "j"}], "]"}], ",", 
+        RowBox[{"\[Beta]s", "[", 
+         RowBox[{"[", "k", "]"}], "]"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"k", ",", "1", ",", 
+        RowBox[{
+         RowBox[{"Dimensions", "[", "\[Beta]s", "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"p3", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[Beta]s", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], ",", 
+       RowBox[{"heats", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{
+        RowBox[{"Dimensions", "[", "\[Beta]s", "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListLinePlot", "[", 
+  RowBox[{"p3", ",", 
+   RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}]}], "Input",
+ CellChangeTimes->{
+  3.5966597146962337`*^9, {3.59665979098565*^9, 3.5966598223764687`*^9}, 
+   3.596693230215147*^9}],
+
+Cell[BoxData["6750.58072609999999258434399962425231933594`9.84994104837617"], \
+"Output",
+ CellChangeTimes->{3.5966665784775133`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"LinkObject", "::", "linkw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Unable to write data to closed link \
+\[NoBreak]\\!\\(LinkObject[\\(\\(\\\"\\\\\\\"C:\\\\\\\\Program \
+Files\\\\\\\\Wolfram Research\\\\\\\\Mathematica\\\\\\\\9.0\\\\\\\\MathKernel\
+\\\\\\\" -subkernel -noinit -mathlink -noicon\\\", 634, \
+8\\)\\)]\\)\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/LinkObject/linkw\\\", ButtonNote -> \
+\\\"LinkObject::linkw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596666925944686*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"KernelObject", "::", "rdead"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Subkernel connected through \
+\[NoBreak]\\!\\(KernelObject[\\(\\(3, \\\"local\\\"\\)\\)]\\)\[NoBreak] \
+appears dead. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/KernelObject\\\", ButtonNote -> \
+\\\"KernelObject::rdead\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596666925958687*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"LinkObject", "::", "linkw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Unable to write data to closed link \
+\[NoBreak]\\!\\(LinkObject[\\(\\(\\\"\\\\\\\"C:\\\\\\\\Program \
+Files\\\\\\\\Wolfram Research\\\\\\\\Mathematica\\\\\\\\9.0\\\\\\\\MathKernel\
+\\\\\\\" -subkernel -noinit -mathlink -noicon\\\", 635, \
+9\\)\\)]\\)\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/LinkObject/linkw\\\", ButtonNote -> \
+\\\"LinkObject::linkw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596666991186473*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"KernelObject", "::", "rdead"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Subkernel connected through \
+\[NoBreak]\\!\\(KernelObject[\\(\\(4, \\\"local\\\"\\)\\)]\\)\[NoBreak] \
+appears dead. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/KernelObject\\\", ButtonNote -> \
+\\\"KernelObject::rdead\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966669912504764`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"LinkObject", "::", "linkd"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Unable to communicate with closed link \
+\[NoBreak]\\!\\(LinkObject[\\(\\(\\\"\\\\\\\"C:\\\\\\\\Program \
+Files\\\\\\\\Wolfram Research\\\\\\\\Mathematica\\\\\\\\9.0\\\\\\\\MathKernel\
+\\\\\\\" -subkernel -noinit -mathlink -noicon\\\", 635, \
+9\\)\\)]\\)\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/LinkObject/linkd\\\", ButtonNote -> \
+\\\"LinkObject::linkd\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596666992214533*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"KernelObject", "::", "rdead"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Subkernel connected through \
+\[NoBreak]\\!\\(KernelObject[\\(\\(4, \\\"local\\\"\\)\\)]\\)\[NoBreak] \
+appears dead. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/KernelObject\\\", ButtonNote -> \
+\\\"KernelObject::rdead\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966669922735357`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Further output of \
+\[NoBreak]\\!\\(\\*StyleBox[\\(KernelObject :: rdead\\), \\\"MessageName\\\"]\
+\\)\[NoBreak] will be suppressed during this calculation. \\!\\(\\*ButtonBox[\
+\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596666992319539*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"LinkObject", "::", "linkd"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Unable to communicate with closed link \
+\[NoBreak]\\!\\(LinkObject[\\(\\(\\\"\\\\\\\"C:\\\\\\\\Program \
+Files\\\\\\\\Wolfram Research\\\\\\\\Mathematica\\\\\\\\9.0\\\\\\\\MathKernel\
+\\\\\\\" -subkernel -noinit -mathlink -noicon\\\", 634, \
+8\\)\\)]\\)\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/LinkObject/linkd\\\", ButtonNote -> \
+\\\"LinkObject::linkd\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.59666699234254*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"LinkObject", "::", "linkw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Unable to write data to closed link \
+\[NoBreak]\\!\\(LinkObject[\\(\\(\\\"\\\\\\\"C:\\\\\\\\Program \
+Files\\\\\\\\Wolfram Research\\\\\\\\Mathematica\\\\\\\\9.0\\\\\\\\MathKernel\
+\\\\\\\" -subkernel -noinit -mathlink -noicon\\\", 7100685, 8\\)\\)]\\)\
+\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/LinkObject/linkw\\\", ButtonNote -> \
+\\\"LinkObject::linkw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966670746433153`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Further output of \
+\[NoBreak]\\!\\(\\*StyleBox[\\(LinkObject :: linkw\\), \
+\\\"MessageName\\\"]\\)\[NoBreak] will be suppressed during this calculation. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/stop\\\", \
+ButtonNote -> \\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596667074678317*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Throw", "::", "nocatch"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Uncaught \[NoBreak]\\!\\(Throw[\\(\\($Failed, \
+Parallel`Protected`dead\\)\\)]\\)\[NoBreak] returned to top level. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/Throw/nocatch\\\", \
+ButtonNote -> \\\"Throw::nocatch\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596667074735321*^9}],
+
+Cell[BoxData[
+ RowBox[{"Hold", "[", 
+  RowBox[{"Throw", "[", 
+   RowBox[{"$Failed", ",", "Parallel`Protected`dead"}], "]"}], 
+  "]"}]], "Output",
+ CellChangeTimes->{3.5966670747653227`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partd"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part specification \[NoBreak]\\!\\(ms \[LeftDoubleBracket] \
+1 \[RightDoubleBracket]\\)\[NoBreak] is longer than depth of object. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/partd\\\", \
+ButtonNote -> \\\"Part::partd\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.59666707489333*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partd"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part specification \[NoBreak]\\!\\(ms \[LeftDoubleBracket] \
+2 \[RightDoubleBracket]\\)\[NoBreak] is longer than depth of object. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/partd\\\", \
+ButtonNote -> \\\"Part::partd\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596667074932332*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partd"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part specification \[NoBreak]\\!\\(ms \[LeftDoubleBracket] \
+3 \[RightDoubleBracket]\\)\[NoBreak] is longer than depth of object. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/partd\\\", \
+ButtonNote -> \\\"Part::partd\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966670749753346`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Further output of \[NoBreak]\\!\\(\\*StyleBox[\\(Part :: \
+partd\\), \\\"MessageName\\\"]\\)\[NoBreak] will be suppressed during this \
+calculation. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966670750053363`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ListLinePlot", "::", "lpn"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\(p\\)\[NoBreak] is not a list of numbers or \
+pairs of numbers. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/ListLinePlot\\\", ButtonNote -> \
+\\\"ListLinePlot::lpn\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596667076064398*^9}],
+
+Cell[BoxData[
+ RowBox[{"ListLinePlot", "[", 
+  RowBox[{"p", ",", 
+   RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.5966670760713987`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"LinkObject", "::", "linkw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Unable to write data to closed link \
+\[NoBreak]\\!\\(LinkObject[\\(\\(\\\"\\\\\\\"C:\\\\\\\\Program \
+Files\\\\\\\\Wolfram Research\\\\\\\\Mathematica\\\\\\\\9.0\\\\\\\\MathKernel\
+\\\\\\\" -subkernel -noinit -mathlink -noicon\\\", 7100685, 8\\)\\)]\\)\
+\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/LinkObject/linkw\\\", ButtonNote -> \
+\\\"LinkObject::linkw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966670785115404`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"KernelObject", "::", "rdead"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Subkernel connected through \
+\[NoBreak]\\!\\(KernelObject[\\(\\(4, \\\"local\\\"\\)\\)]\\)\[NoBreak] \
+appears dead. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/KernelObject\\\", ButtonNote -> \
+\\\"KernelObject::rdead\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966670785745487`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"LinkObject", "::", "linkd"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Unable to communicate with closed link \
+\[NoBreak]\\!\\(LinkObject[\\(\\(\\\"\\\\\\\"C:\\\\\\\\Program \
+Files\\\\\\\\Wolfram Research\\\\\\\\Mathematica\\\\\\\\9.0\\\\\\\\MathKernel\
+\\\\\\\" -subkernel -noinit -mathlink -noicon\\\", 7100685, 8\\)\\)]\\)\
+\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/LinkObject/linkd\\\", ButtonNote -> \
+\\\"LinkObject::linkd\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596667078600545*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"KernelObject", "::", "rdead"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Subkernel connected through \
+\[NoBreak]\\!\\(KernelObject[\\(\\(4, \\\"local\\\"\\)\\)]\\)\[NoBreak] \
+appears dead. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/KernelObject\\\", ButtonNote -> \
+\\\"KernelObject::rdead\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966670786595483`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Parallel`Developer`QueueRun", "::", "hmm"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Received unexpected result \[NoBreak]\\!\\(Null\\)\
+\[NoBreak] from \[NoBreak]\\!\\(KernelObject[\\(\\(2, \\\"local\\\"\\)\\)]\\)\
+\[NoBreak].\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966670787985563`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Parallel`Developer`QueueRun", "::", "hmm"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Received unexpected result \[NoBreak]\\!\\(Null\\)\
+\[NoBreak] from \[NoBreak]\\!\\(KernelObject[\\(\\(1, \\\"local\\\"\\)\\)]\\)\
+\[NoBreak].\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596667078930565*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"LinkObject", "::", "linkw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Unable to write data to closed link \
+\[NoBreak]\\!\\(LinkObject[\\(\\(\\\"\\\\\\\"C:\\\\\\\\Program \
+Files\\\\\\\\Wolfram Research\\\\\\\\Mathematica\\\\\\\\9.0\\\\\\\\MathKernel\
+\\\\\\\" -subkernel -noinit -mathlink -noicon\\\", 7100773, 8\\)\\)]\\)\
+\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/LinkObject/linkw\\\", ButtonNote -> \
+\\\"LinkObject::linkw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966671491406384`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Throw", "::", "nocatch"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Uncaught \[NoBreak]\\!\\(Throw[\\(\\($Failed, \
+Parallel`Protected`dead\\)\\)]\\)\[NoBreak] returned to top level. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/Throw/nocatch\\\", \
+ButtonNote -> \\\"Throw::nocatch\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966671491736403`*^9}],
+
+Cell[BoxData[
+ RowBox[{"Hold", "[", 
+  RowBox[{"Throw", "[", 
+   RowBox[{"$Failed", ",", "Parallel`Protected`dead"}], "]"}], 
+  "]"}]], "Output",
+ CellChangeTimes->{3.596667149195642*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partd"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part specification \[NoBreak]\\!\\(suscepts \
+\[LeftDoubleBracket] 1 \[RightDoubleBracket]\\)\[NoBreak] is longer than \
+depth of object. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\
+\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/partd\\\", ButtonNote -> \
+\\\"Part::partd\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966671492406435`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partd"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part specification \[NoBreak]\\!\\(suscepts \
+\[LeftDoubleBracket] 2 \[RightDoubleBracket]\\)\[NoBreak] is longer than \
+depth of object. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\
+\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/partd\\\", ButtonNote -> \
+\\\"Part::partd\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966671492866464`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partd"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part specification \[NoBreak]\\!\\(suscepts \
+\[LeftDoubleBracket] 3 \[RightDoubleBracket]\\)\[NoBreak] is longer than \
+depth of object. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\
+\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/partd\\\", ButtonNote -> \
+\\\"Part::partd\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596667149329649*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Further output of \[NoBreak]\\!\\(\\*StyleBox[\\(Part :: \
+partd\\), \\\"MessageName\\\"]\\)\[NoBreak] will be suppressed during this \
+calculation. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.59666714935365*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->True,
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  Method->{},
+  PlotRange->{All, All},
+  PlotRangeClipping->True,
+  PlotRangePadding->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.5966671495806637`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"LinkObject", "::", "linkw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Unable to write data to closed link \
+\[NoBreak]\\!\\(LinkObject[\\(\\(\\\"\\\\\\\"C:\\\\\\\\Program \
+Files\\\\\\\\Wolfram Research\\\\\\\\Mathematica\\\\\\\\9.0\\\\\\\\MathKernel\
+\\\\\\\" -subkernel -noinit -mathlink -noicon\\\", 7100773, 8\\)\\)]\\)\
+\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/LinkObject/linkw\\\", ButtonNote -> \
+\\\"LinkObject::linkw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596667150779733*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"KernelObject", "::", "rdead"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Subkernel connected through \
+\[NoBreak]\\!\\(KernelObject[\\(\\(4, \\\"local\\\"\\)\\)]\\)\[NoBreak] \
+appears dead. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/KernelObject\\\", ButtonNote -> \
+\\\"KernelObject::rdead\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596667150844737*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"LinkObject", "::", "linkd"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Unable to communicate with closed link \
+\[NoBreak]\\!\\(LinkObject[\\(\\(\\\"\\\\\\\"C:\\\\\\\\Program \
+Files\\\\\\\\Wolfram Research\\\\\\\\Mathematica\\\\\\\\9.0\\\\\\\\MathKernel\
+\\\\\\\" -subkernel -noinit -mathlink -noicon\\\", 7100773, 8\\)\\)]\\)\
+\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/LinkObject/linkd\\\", ButtonNote -> \
+\\\"LinkObject::linkd\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596667150868738*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"KernelObject", "::", "rdead"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Subkernel connected through \
+\[NoBreak]\\!\\(KernelObject[\\(\\(4, \\\"local\\\"\\)\\)]\\)\[NoBreak] \
+appears dead. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/KernelObject\\\", ButtonNote -> \
+\\\"KernelObject::rdead\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966671509307413`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"LinkObject", "::", "linkw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Unable to write data to closed link \
+\[NoBreak]\\!\\(LinkObject[\\(\\(\\\"\\\\\\\"C:\\\\\\\\Program \
+Files\\\\\\\\Wolfram Research\\\\\\\\Mathematica\\\\\\\\9.0\\\\\\\\MathKernel\
+\\\\\\\" -subkernel -noinit -mathlink -noicon\\\", 7100852, 8\\)\\)]\\)\
+\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/LinkObject/linkw\\\", ButtonNote -> \
+\\\"LinkObject::linkw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966672181176395`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Throw", "::", "nocatch"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Uncaught \[NoBreak]\\!\\(Throw[\\(\\($Failed, \
+Parallel`Protected`dead\\)\\)]\\)\[NoBreak] returned to top level. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/Throw/nocatch\\\", \
+ButtonNote -> \\\"Throw::nocatch\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966672181606417`*^9}],
+
+Cell[BoxData[
+ RowBox[{"Hold", "[", 
+  RowBox[{"Throw", "[", 
+   RowBox[{"$Failed", ",", "Parallel`Protected`dead"}], "]"}], 
+  "]"}]], "Output",
+ CellChangeTimes->{3.5966672181656423`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partd"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part specification \[NoBreak]\\!\\(heats \
+\[LeftDoubleBracket] 1 \[RightDoubleBracket]\\)\[NoBreak] is longer than \
+depth of object. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\
+\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/partd\\\", ButtonNote -> \
+\\\"Part::partd\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966672182216454`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partd"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part specification \[NoBreak]\\!\\(heats \
+\[LeftDoubleBracket] 2 \[RightDoubleBracket]\\)\[NoBreak] is longer than \
+depth of object. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\
+\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/partd\\\", ButtonNote -> \
+\\\"Part::partd\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.596667218268648*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partd"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part specification \[NoBreak]\\!\\(heats \
+\[LeftDoubleBracket] 3 \[RightDoubleBracket]\\)\[NoBreak] is longer than \
+depth of object. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\
+\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/partd\\\", ButtonNote -> \
+\\\"Part::partd\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966672183146515`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Further output of \[NoBreak]\\!\\(\\*StyleBox[\\(Part :: \
+partd\\), \\\"MessageName\\\"]\\)\[NoBreak] will be suppressed during this \
+calculation. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.5966672183406525`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->True,
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  Method->{},
+  PlotRange->{All, All},
+  PlotRangeClipping->True,
+  PlotRangePadding->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.596667218394656*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n", "=", "20"}], ";", 
+  RowBox[{"j", "=", "1"}], ";", 
   RowBox[{"steps", "=", "50000"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"\[Beta]s", "=", 
@@ -1534,45 +2257,93 @@ Cell[30096, 770, 1646, 32, 264, "Output"],
 Cell[31745, 804, 1679, 33, 263, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[33461, 842, 6025, 162, 353, "Input"],
-Cell[39489, 1006, 1106, 22, 266, "Output"],
-Cell[40598, 1030, 1134, 22, 261, "Output"],
-Cell[41735, 1054, 1097, 21, 259, "Output"],
-Cell[42835, 1077, 1218, 23, 238, "Output"],
-Cell[44056, 1102, 1143, 22, 250, "Output"]
+Cell[33461, 842, 5416, 160, 353, "Input"],
+Cell[38880, 1004, 133, 2, 33, "Output"],
+Cell[39016, 1008, 654, 13, 43, "Message"],
+Cell[39673, 1023, 501, 11, 23, "Message"],
+Cell[40177, 1036, 654, 13, 43, "Message"],
+Cell[40834, 1051, 503, 11, 23, "Message"],
+Cell[41340, 1064, 657, 13, 43, "Message"],
+Cell[42000, 1079, 503, 11, 23, "Message"],
+Cell[42506, 1092, 536, 11, 23, "Message"],
+Cell[43045, 1105, 656, 13, 43, "Message"],
+Cell[43704, 1120, 660, 13, 43, "Message"],
+Cell[44367, 1135, 534, 11, 23, "Message"],
+Cell[44904, 1148, 497, 10, 23, "Message"],
+Cell[45404, 1160, 189, 5, 33, "Output"],
+Cell[45596, 1167, 505, 10, 23, "Message"],
+Cell[46104, 1179, 506, 10, 23, "Message"],
+Cell[46613, 1191, 508, 10, 23, "Message"],
+Cell[47124, 1203, 530, 11, 23, "Message"],
+Cell[47657, 1216, 458, 10, 23, "Message"],
+Cell[48118, 1228, 173, 4, 33, "Output"],
+Cell[48294, 1234, 660, 13, 43, "Message"],
+Cell[48957, 1249, 503, 11, 23, "Message"],
+Cell[49463, 1262, 661, 13, 43, "Message"],
+Cell[50127, 1277, 503, 11, 23, "Message"],
+Cell[50633, 1290, 353, 8, 23, "Message"],
+Cell[50989, 1300, 351, 8, 23, "Message"],
+Cell[51343, 1310, 660, 13, 43, "Message"],
+Cell[52006, 1325, 499, 10, 23, "Message"],
+Cell[52508, 1337, 187, 5, 33, "Output"],
+Cell[52698, 1344, 516, 11, 23, "Message"],
+Cell[53217, 1357, 516, 11, 23, "Message"],
+Cell[53736, 1370, 514, 11, 23, "Message"],
+Cell[54253, 1383, 527, 11, 23, "Message"],
+Cell[54783, 1396, 330, 10, 259, "Output"],
+Cell[55116, 1408, 658, 13, 43, "Message"],
+Cell[55777, 1423, 501, 11, 23, "Message"],
+Cell[56281, 1436, 661, 13, 43, "Message"],
+Cell[56945, 1451, 503, 11, 23, "Message"],
+Cell[57451, 1464, 660, 13, 43, "Message"],
+Cell[58114, 1479, 499, 10, 23, "Message"],
+Cell[58616, 1491, 189, 5, 33, "Output"],
+Cell[58808, 1498, 513, 11, 23, "Message"],
+Cell[59324, 1511, 511, 11, 23, "Message"],
+Cell[59838, 1524, 513, 11, 23, "Message"],
+Cell[60354, 1537, 530, 11, 23, "Message"],
+Cell[60887, 1550, 328, 10, 259, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[45236, 1129, 143, 3, 32, "Input"],
-Cell[45382, 1134, 88, 1, 33, "Output"]
+Cell[61252, 1565, 6025, 162, 353, "Input"],
+Cell[67280, 1729, 1106, 22, 266, "Output"],
+Cell[68389, 1753, 1134, 22, 261, "Output"],
+Cell[69526, 1777, 1097, 21, 259, "Output"],
+Cell[70626, 1800, 1218, 23, 238, "Output"],
+Cell[71847, 1825, 1143, 22, 250, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[45507, 1140, 528, 16, 32, "Input"],
-Cell[46038, 1158, 3057, 69, 680, "Output"]
+Cell[73027, 1852, 143, 3, 32, "Input"],
+Cell[73173, 1857, 88, 1, 33, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[49132, 1232, 1523, 31, 73, "Input"],
-Cell[50658, 1265, 2757, 61, 680, "Output"]
+Cell[73298, 1863, 528, 16, 32, "Input"],
+Cell[73829, 1881, 3057, 69, 680, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[53452, 1331, 927, 21, 133, "Input"],
-Cell[54382, 1354, 374, 5, 33, "Output"]
+Cell[76923, 1955, 1523, 31, 73, "Input"],
+Cell[78449, 1988, 2757, 61, 680, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[54793, 1364, 856, 22, 73, "Input"],
-Cell[55652, 1388, 231, 4, 33, "Output"]
+Cell[81243, 2054, 927, 21, 133, "Input"],
+Cell[82173, 2077, 374, 5, 33, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[55920, 1397, 286, 6, 32, "Input"],
-Cell[56209, 1405, 125, 2, 33, "Output"]
+Cell[82584, 2087, 856, 22, 73, "Input"],
+Cell[83443, 2111, 231, 4, 33, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[56371, 1412, 1768, 39, 153, "Input"],
-Cell[58142, 1453, 2314, 42, 247, "Output"]
+Cell[83711, 2120, 286, 6, 32, "Input"],
+Cell[84000, 2128, 125, 2, 33, "Output"]
 }, Open  ]],
-Cell[60471, 1498, 94, 1, 32, "Input"],
-Cell[60568, 1501, 89, 1, 53, "Input"],
-Cell[60660, 1504, 96, 1, 32, "Input"],
-Cell[60759, 1507, 92, 1, 32, "Input"]
+Cell[CellGroupData[{
+Cell[84162, 2135, 1768, 39, 153, "Input"],
+Cell[85933, 2176, 2314, 42, 247, "Output"]
+}, Open  ]],
+Cell[88262, 2221, 94, 1, 32, "Input"],
+Cell[88359, 2224, 89, 1, 53, "Input"],
+Cell[88451, 2227, 96, 1, 32, "Input"],
+Cell[88550, 2230, 92, 1, 32, "Input"]
 }
 ]
 *)
