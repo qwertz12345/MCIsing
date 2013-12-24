@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     59730,       1534]
-NotebookOptionsPosition[     57948,       1473]
-NotebookOutlinePosition[     58325,       1489]
-CellTagsIndexPosition[     58282,       1486]
+NotebookDataLength[     59878,       1538]
+NotebookOptionsPosition[     58095,       1477]
+NotebookOutlinePosition[     58472,       1493]
+CellTagsIndexPosition[     58429,       1490]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -220,7 +220,7 @@ Cell[BoxData[{
              RowBox[{"y", "++"}], ",", "\[IndentingNewLine]", 
              RowBox[{
               RowBox[{"sum", "=", 
-               RowBox[{"sum", "+", 
+               RowBox[{"sum", "-", 
                 RowBox[{"j", "*", 
                  RowBox[{"grid", "[", 
                   RowBox[{"[", 
@@ -259,10 +259,12 @@ Cell[BoxData[{
          "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
      "\[IndentingNewLine]", 
      RowBox[{"sum", "/", 
-      RowBox[{
-       RowBox[{"Dimensions", "[", "grids", "]"}], "[", 
-       RowBox[{"[", "1", "]"}], "]"}]}]}]}], "\[IndentingNewLine]", 
-   "]"}]}], "\[IndentingNewLine]", 
+      RowBox[{"(", 
+       RowBox[{"2", "*", 
+        RowBox[{
+         RowBox[{"Dimensions", "[", "grids", "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ")"}]}]}]}], "\[IndentingNewLine]",
+    "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"energySq", "[", 
    RowBox[{"grids_", ",", "j_"}], "]"}], ":=", 
@@ -305,7 +307,7 @@ Cell[BoxData[{
              RowBox[{"y", "++"}], ",", "\[IndentingNewLine]", 
              RowBox[{
               RowBox[{"sum1", "=", 
-               RowBox[{"sum1", "+", 
+               RowBox[{"sum1", "-", 
                 RowBox[{"(", 
                  RowBox[{"j", "*", 
                   RowBox[{"grid", "[", 
@@ -345,8 +347,9 @@ Cell[BoxData[{
          "]"}], ";", "\[IndentingNewLine]", 
         RowBox[{"sum", " ", "=", " ", 
          RowBox[{"sum", " ", "+", " ", 
-          RowBox[{"sum1", "^", "2"}]}]}], ";"}]}], "\[IndentingNewLine]", 
-      "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"sum1", "^", "2"}], "/", "4"}]}]}], ";"}]}], 
+      "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"sum", "/", 
       RowBox[{
        RowBox[{"Dimensions", "[", "grids", "]"}], "[", 
@@ -519,7 +522,8 @@ Cell[BoxData[{
    3.596118104135445*^9}, {3.596125438306828*^9, 3.5961254407319746`*^9}, {
    3.596875164515299*^9, 3.596875165896376*^9}, {3.596875277287678*^9, 
    3.5968752778937073`*^9}, {3.5968763988150716`*^9, 3.596876407544565*^9}, {
-   3.59687926096585*^9, 3.596879302475196*^9}}],
+   3.59687926096585*^9, 3.596879302475196*^9}, {3.5968851847321367`*^9, 
+   3.5968852531959963`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -1488,54 +1492,54 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 20708, 501, 1673, "Input"],
+Cell[557, 20, 20855, 505, 1673, "Input"],
 Cell[CellGroupData[{
-Cell[21290, 525, 8369, 228, 473, "Input"],
-Cell[29662, 755, 157, 2, 33, "Output"]
+Cell[21437, 529, 8369, 228, 473, "Input"],
+Cell[29809, 759, 157, 2, 33, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[29856, 762, 6025, 162, 353, "Input"],
-Cell[35884, 926, 1106, 22, 266, "Output"],
-Cell[36993, 950, 1134, 22, 261, "Output"],
-Cell[38130, 974, 1097, 21, 259, "Output"],
-Cell[39230, 997, 1218, 23, 238, "Output"],
-Cell[40451, 1022, 1143, 22, 250, "Output"]
+Cell[30003, 766, 6025, 162, 353, "Input"],
+Cell[36031, 930, 1106, 22, 266, "Output"],
+Cell[37140, 954, 1134, 22, 261, "Output"],
+Cell[38277, 978, 1097, 21, 259, "Output"],
+Cell[39377, 1001, 1218, 23, 238, "Output"],
+Cell[40598, 1026, 1143, 22, 250, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[41631, 1049, 143, 3, 32, "Input"],
-Cell[41777, 1054, 88, 1, 33, "Output"]
+Cell[41778, 1053, 143, 3, 32, "Input"],
+Cell[41924, 1058, 88, 1, 33, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[41902, 1060, 528, 16, 32, "Input"],
-Cell[42433, 1078, 3057, 69, 680, "Output"]
+Cell[42049, 1064, 528, 16, 32, "Input"],
+Cell[42580, 1082, 3057, 69, 680, "Output"]
 }, Open  ]],
-Cell[45505, 1150, 202, 7, 32, "Input"],
+Cell[45652, 1154, 202, 7, 32, "Input"],
 Cell[CellGroupData[{
-Cell[45732, 1161, 3624, 104, 333, "Input"],
-Cell[49359, 1267, 246, 3, 33, "Output"],
-Cell[49608, 1272, 265, 4, 33, "Output"],
-Cell[49876, 1278, 531, 10, 411, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[50444, 1293, 1028, 22, 133, "Input"],
-Cell[51475, 1317, 374, 5, 33, "Output"]
+Cell[45879, 1165, 3624, 104, 333, "Input"],
+Cell[49506, 1271, 246, 3, 33, "Output"],
+Cell[49755, 1276, 265, 4, 33, "Output"],
+Cell[50023, 1282, 531, 10, 411, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[51886, 1327, 856, 22, 73, "Input"],
-Cell[52745, 1351, 231, 4, 33, "Output"]
+Cell[50591, 1297, 1028, 22, 133, "Input"],
+Cell[51622, 1321, 374, 5, 33, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[53013, 1360, 286, 6, 32, "Input"],
-Cell[53302, 1368, 125, 2, 33, "Output"]
+Cell[52033, 1331, 856, 22, 73, "Input"],
+Cell[52892, 1355, 231, 4, 33, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[53464, 1375, 1768, 39, 153, "Input"],
-Cell[55235, 1416, 2314, 42, 247, "Output"]
+Cell[53160, 1364, 286, 6, 32, "Input"],
+Cell[53449, 1372, 125, 2, 33, "Output"]
 }, Open  ]],
-Cell[57564, 1461, 94, 1, 32, "Input"],
-Cell[57661, 1464, 89, 1, 53, "Input"],
-Cell[57753, 1467, 96, 1, 32, "Input"],
-Cell[57852, 1470, 92, 1, 32, "Input"]
+Cell[CellGroupData[{
+Cell[53611, 1379, 1768, 39, 153, "Input"],
+Cell[55382, 1420, 2314, 42, 247, "Output"]
+}, Open  ]],
+Cell[57711, 1465, 94, 1, 32, "Input"],
+Cell[57808, 1468, 89, 1, 53, "Input"],
+Cell[57900, 1471, 96, 1, 32, "Input"],
+Cell[57999, 1474, 92, 1, 32, "Input"]
 }
 ]
 *)
