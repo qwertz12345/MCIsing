@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.12.29)  29 DEC 2013 16:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.12.29)  22 JAN 2014 19:39
 entering extended mode
 **MC*Ising.tex
 ("F:\Systemordner\Dokumente\Git\MCIsing\pdf\MC Ising.tex"
@@ -289,18 +289,23 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 Here is how much of TeX's memory you used:
  2642 strings out of 493921
  33662 string characters out of 3147293
- 85157 words of memory out of 3000000
+ 86157 words of memory out of 3000000
  5877 multiletter control sequences out of 15000+200000
  52703 words of font info for 54 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  27i,6n,24p,223b,193s stack positions out of 5000i,500n,10000p,200000b,50000s
-{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}
-<f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.
-pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr1
-2.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb>
-Output written on "MC Ising.pdf" (6 pages, 130226 bytes).
+{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}
+{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.
+enc}{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.
+enc}<f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmb
+x12.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmex10.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm
+/lmmi10.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi7.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public
+/lm/lmr10.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/lm/lmr17.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr7.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/lm/lmsy10.pfb>
+Output written on "MC Ising.pdf" (6 pages, 170959 bytes).
 PDF statistics:
- 42 PDF objects out of 1000 (max. 8388607)
+ 68 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

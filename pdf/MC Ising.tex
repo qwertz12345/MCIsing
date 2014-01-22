@@ -110,6 +110,18 @@ test
 \pagestyle{plain} %%Ab hier die Kopf-/Fusszeilen: headings / fancy / ...
 
 \section{Ising-Modell}
+Das Ising-Modell beschreibt Magnetismus in Festkörpern. Die Atome in den Festkörpern sitzen dabei auf Gittern und können dabei nur zwei Zustände annehmen: $+1$ oder $-1$. \\
+Die Energie H des System ist dann gegeben durch:
+$ H = - \sum_{<i j>} J_{ij}S_{i}S_{j} - \mu B\cdot \sum_{i=1}^{N}S_i
+$
+Folgende Bezeichnungen wurden benutzt:\\
+$S_i$: Spin des Atoms i \\
+$J_{ij}$: Kopplungskonstante zwischen den Spins der Atome i und j
+B: Magnetfeld
+
+Im Folgenden wird $B=0$ gesetzt. Weiterhin wird angemommen, dass $J_{ij}=J$, also dass J konstant ist.\\
+Man erhält:
+$ H = - J\cdot \sum_{<i j>}S_{i}S_{j} $
 
 \section{Metropolis Monte Carlo Simulation}
 
