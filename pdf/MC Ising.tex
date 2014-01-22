@@ -110,18 +110,91 @@ test
 \pagestyle{plain} %%Ab hier die Kopf-/Fusszeilen: headings / fancy / ...
 
 \section{Ising-Modell}
-Das Ising-Modell beschreibt Magnetismus in Festkörpern. Die Atome in den Festkörpern sitzen dabei auf Gittern und können dabei nur zwei Zustände annehmen: $+1$ oder $-1$. \\
-Die Energie H des System ist dann gegeben durch:
-$ H = - \sum_{<i j>} J_{ij}S_{i}S_{j} - \mu B\cdot \sum_{i=1}^{N}S_i
-$
-Folgende Bezeichnungen wurden benutzt:\\
-$S_i$: Spin des Atoms i \\
-$J_{ij}$: Kopplungskonstante zwischen den Spins der Atome i und j
-B: Magnetfeld
 
-Im Folgenden wird $B=0$ gesetzt. Weiterhin wird angemommen, dass $J_{ij}=J$, also dass J konstant ist.\\
+Das Ising-Modell beschreibt Magnetismus in Festkörpern. Trotz seiner Einfachheit vermag es Phasenübergänge zu beschreiben.\\
+Das Modell nimmt an, dass die Atome in den Festkörpern auf Gittern sitzen und dabei nur zwei Zustände annehmen können: $+1$ oder $-1$. \\
+Die Energie H des System ist dann gegeben durch:
+\begin{equation}
+H = - \sum_{ij} J_{ij}s_{i}s_{j} - \mu B\cdot \sum_{i=1}^{N}s_i
+\label{eq:}
+\end{equation}
+Folgende Bezeichnungen wurden benutzt:\\
+$s_i$: Spin des Atoms i, wobei $s_i\in \{-1,1\}$ \\
+$J_{ij}$: Kopplungskonstante zwischen den Spins der Atome i und j
+$B$: Magnetfeld
+\\
+Im Folgenden wird $B=0$ gesetzt. Weiterhin wird angenommen, dass J konstant für die nächsten Nachbarn des Atoms ist: $J_{ij}=J$ für j ein nächster Nachbar zu i, sonst $J=0$. \\
 Man erhält:
-$ H = - J\cdot \sum_{<i j>}S_{i}S_{j} $
+\begin{equation}
+H = - J\cdot \sum_{<i j>}s_{i}s_{j}
+\label{eq:}
+\end{equation}
+$<ij>$: Diese Notation beschreibt Summation nur über nächste Nachbarn von Atom i.
+\\
+Eine spezielle Konfiguration von Spins im Gitter hat nach der Boltzmannverteilung die Wahrscheinlichkeit
+\begin{equation}
+W_i = \frac{e^{-\beta H_i}}{Z},
+\label{eq:}
+\end{equation}
+wobei $Z = \sum_{i}{e^{-\beta H_i}}$ und $\beta = \frac{1}{k_B T}$.
+\\
+\\
+Wichtige Observablen im Modell sind:
+\begin{itemize}
+	\item{
+	Ferro- und Antiferro-Magnetisierungen:
+	\begin{equation}
+	M_{Ferro} = \frac{1}{N} \sum_{ij}{S_{ij}}
+	\label{eq:}
+	\end{equation}
+	\begin{equation}
+	M_{AntiFerro} = \frac{1}{N} \sum_{ij}{(-1)^{i+j}S_{ij}}
+	\label{eq:}
+	\end{equation}
+	}
+	\item{
+	Suszeptibilität
+	\begin{equation}
+	\chi = \beta (\left\langle M^2\right\rangle - \left\langle M\right\rangle^2)
+	\label{eq:}
+	\end{equation}
+	}
+	\item{
+	Spezifische Wärme
+	\begin{equation}
+	C_v = \frac{1}{T^2}(\left\langle H^2\right\rangle - \left\langle H\right\rangle^2)
+	\label{eq:}
+	\end{equation}
+	}
+\end{itemize}
+Dabei wurde folgende Notation für den Erwartungswert einer Observablen benutzt:
+\begin{equation}
+\left\langle O\right\rangle = \frac{1}{N_{iter}}\sum_{i=1}^{N_{iter}}{O_i}
+\label{eq:}
+\end{equation}
+Ausserdem bezeichnet $S_{ij}$ den Spin an der Position (i,j) in einem zweidimensionalen Gitter.
+\\
+Es werden periodische Randbedingungen verwendet. Für ein quadratisches Gitter der Grösse $n\times n$ gilt dann:
+\begin{align}
+s_{n+1,j} = s_{1,j}\\
+s_{i,n+1} = s_{i,1}\\
+s_{0,j} = s_{n,j}\\
+s_{i,0} = s_{i,n}
+\label{eq:}
+\end{align}
+
+\subsection{Analytische Lösung für 2D}
+Die analytische Lösung für den zweidimensionalen Fall wurde von Onsager 1944 gefunden.\\
+Die Magnetisierung beträgt:
+\begin{equation}
+M = (1-(\sinh (\log (1+\sqrt{2})\frac{T_c}{T}))^{-4})^{\frac{1}{8}},
+\label{eq:}
+\end{equation} 
+wobei
+\begin{equation}
+T_c = \frac{2J}{k_B\log(1+\sqrt{2})}
+\label{eq:}
+\end{equation}
 
 \section{Metropolis Monte Carlo Simulation}
 

@@ -1,8 +1,9 @@
 \select@language {ngerman}
 \contentsline {section}{\numberline {0.1}Ising-Modell}{3}
-\contentsline {section}{\numberline {0.2}Metropolis Monte Carlo Simulation}{3}
-\contentsline {section}{\numberline {0.3}Ergebnisse}{3}
-\contentsline {section}{\numberline {0.4}Code}{3}
+\contentsline {subsection}{\numberline {0.1.1}Analytische L\"osung f\"ur 2D}{4}
+\contentsline {section}{\numberline {0.2}Metropolis Monte Carlo Simulation}{4}
+\contentsline {section}{\numberline {0.3}Ergebnisse}{4}
+\contentsline {section}{\numberline {0.4}Code}{4}
 \vspace *{\baselineskip }
-\contentsline {chapter}{Abbildungsverzeichnis}{4}
-\contentsline {chapter}{Tabellenverzeichnis}{5}
+\contentsline {chapter}{Abbildungsverzeichnis}{5}
+\contentsline {chapter}{Tabellenverzeichnis}{6}
