@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.12.29)  23 JAN 2014 00:55
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.12.29)  23 JAN 2014 13:39
 entering extended mode
 **MC*Ising.tex
 ("F:\Systemordner\Dokumente\Git\MCIsing\pdf\MC Ising.tex"
@@ -315,30 +315,62 @@ LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 144.
  [3
 
-] [4] ("F:\Systemordner\Dokumente\Git\MCIsing\pdf\MC Ising.lof")
+] <../Bilder/mag.png, id=27, 397.485pt x 251.94125pt>
+File: ../Bilder/mag.png Graphic file (type png)
+
+<use ../Bilder/mag.png>
+Package pdftex.def Info: ../Bilder/mag.png used on input line 218.
+(pdftex.def)             Requested size: 397.48402pt x 251.94063pt.
+
+Overfull \hbox (52.48402pt too wide) in paragraph at lines 218--219
+ [][] 
+ []
+
+<../Bilder/susz.png, id=28, 397.485pt x 246.9225pt>
+File: ../Bilder/susz.png Graphic file (type png)
+ <use ../Bilder/susz.png>
+Package pdftex.def Info: ../Bilder/susz.png used on input line 225.
+(pdftex.def)             Requested size: 397.48402pt x 246.92188pt.
+
+Overfull \hbox (52.48402pt too wide) in paragraph at lines 225--226
+ [][] 
+ []
+
+<../Bilder/spez.png, id=29, 397.485pt x 248.93pt>
+File: ../Bilder/spez.png Graphic file (type png)
+ <use ../Bilder/spez.png>
+Package pdftex.def Info: ../Bilder/spez.png used on input line 232.
+(pdftex.def)             Requested size: 397.48402pt x 248.92938pt.
+
+Overfull \hbox (52.48402pt too wide) in paragraph at lines 232--233
+ [][] 
+ []
+
+[4] [5 <F:/Systemordner/Dokumente/Git/MCIsing/Bilder/mag.png (PNG copy)> <F:/Systemordner/Dokumente/Git/MCIsing/Bilder/s
+usz.png (PNG copy)>] [6 <F:/Systemordner/Dokumente/Git/MCIsing/Bilder/spez.png (PNG copy)>]
+("F:\Systemordner\Dokumente\Git\MCIsing\pdf\MC Ising.lof")
 \tf@lof=\write4
- [5
+ [7
 
 
 ] ("F:\Systemordner\Dokumente\Git\MCIsing\pdf\MC Ising.lot")
 \tf@lot=\write5
- [6
+ [8
 
 
-]
-("F:\Systemordner\Dokumente\Git\MCIsing\pdf\MC Ising.aux")
+] ("F:\Systemordner\Dokumente\Git\MCIsing\pdf\MC Ising.aux")
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2661 strings out of 493921
- 33964 string characters out of 3147293
- 91205 words of memory out of 3000000
- 5893 multiletter control sequences out of 15000+200000
+ 2680 strings out of 493921
+ 34296 string characters out of 3147293
+ 91229 words of memory out of 3000000
+ 5908 multiletter control sequences out of 15000+200000
  55701 words of font info for 55 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,8n,24p,270b,193s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,8n,24p,270b,215s stack positions out of 5000i,500n,10000p,200000b,50000s
 {f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.en
 c}{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathe
 x.enc}{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx1
@@ -349,9 +381,9 @@ c/lm/lmr10.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><f:/
 lic/lm/lmr17.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr5.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/pu
 blic/lm/lmr7.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/
 public/lm/lmsy7.pfb>
-Output written on "MC Ising.pdf" (7 pages, 221829 bytes).
+Output written on "MC Ising.pdf" (9 pages, 240623 bytes).
 PDF statistics:
- 85 PDF objects out of 1000 (max. 8388607)
+ 94 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

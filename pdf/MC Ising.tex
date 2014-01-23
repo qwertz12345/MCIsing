@@ -203,7 +203,7 @@ Der Metropolisalgorithmus ist eine MC-Simulation, welche eine Folge von Zufallsz
 Der Algorithmus funktioniert wie folgt:
 \begin{enumerate}
 	\item 
-	Wähle einen zufälligen Gitterpunkt. Dabei haben alle Gitterpunkte die gleiche Wahrscheinlichkeit ausgewählt zu werden.
+	Wähle einen zufälligen Gitterpunkt. Dabei haben alle Gitterpunkte die gleiche Wahrscheinlichkeit gewählt zu werden.
 	\item
 	Kehre an diesem Punkt den Spin um. Berechne die Energiedifferenz $\Delta E = H(neu) - H(alt)$. Falls $\Delta E < 0$, akzeptiere den Spinflip immer. Andernfalls akzeptiere mit der Wahrscheinlichkeit $e^{-\beta \Delta E}$.
 	\item
@@ -213,6 +213,31 @@ Der Algorithmus funktioniert wie folgt:
 
 
 \section{Ergebnisse}
+Meine 
+\begin{figure}
+	\centering
+		\includegraphics{../Bilder/mag.png}
+	\caption{Magnetisierung}
+	\label{fig:mag}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics{../Bilder/susz.png}
+	\caption{Suszeptibilität}
+	\label{fig:susz}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics{../Bilder/spez.png}
+	\caption{Spezifische Wärme}
+	\label{fig:spez}
+\end{figure}
+
+
+
+
 
 \section{Code}
 
