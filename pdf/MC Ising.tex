@@ -195,8 +195,22 @@ wobei
 T_c = \frac{2J}{k_B\log(1+\sqrt{2})}
 \label{eq:}
 \end{equation}
+Bei dieser kritischen Temperatur erfolgt der Phasenübergang.
 
 \section{Metropolis Monte Carlo Simulation}
+Monte Carlo Simulationen bestehen aus sogenannten Zufallsexperimenten, dh. sie verwenden wahrscheinlichkeitstheoretische Erkenntnisse, um Probleme zu lösen. Einsatzgebiete sind solche Probleme, die analytisch nicht oder nur schwer zu lösen sind.\\
+Der Metropolisalgorithmus ist eine MC-Simulation, welche eine Folge von Zufallszahlen entsprechend der Boltzmannverteilung erzeugt. \\
+Der Algorithmus funktioniert wie folgt:
+\begin{enumerate}
+	\item 
+	Wähle einen zufälligen Gitterpunkt. Dabei haben alle Gitterpunkte die gleiche Wahrscheinlichkeit ausgewählt zu werden.
+	\item
+	Kehre an diesem Punkt den Spin um. Berechne die Energiedifferenz $\Delta E = H(neu) - H(alt)$. Falls $\Delta E < 0$, akzeptiere den Spinflip immer. Andernfalls akzeptiere mit der Wahrscheinlichkeit $e^{-\beta \Delta E}$.
+	\item
+	Fahre mit Schritt 1 fort.
+\end{enumerate}
+
+
 
 \section{Ergebnisse}
 

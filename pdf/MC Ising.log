@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.12.29)  22 JAN 2014 22:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.12.29)  23 JAN 2014 00:55
 entering extended mode
 **MC*Ising.tex
 ("F:\Systemordner\Dokumente\Git\MCIsing\pdf\MC Ising.tex"
@@ -223,6 +223,9 @@ LaTeX Warning: Label `eq:' multiply defined.
 
 LaTeX Warning: Label `eq:' multiply defined.
 
+
+LaTeX Warning: Label `eq:' multiply defined.
+
 )
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
 LaTeX Font Info:    ... okay on input line 83.
@@ -335,7 +338,7 @@ Here is how much of TeX's memory you used:
  5893 multiletter control sequences out of 15000+200000
  55701 words of font info for 55 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,8n,24p,223b,193s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,8n,24p,270b,193s stack positions out of 5000i,500n,10000p,200000b,50000s
 {f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.en
 c}{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathe
 x.enc}{f:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx1
@@ -346,7 +349,7 @@ c/lm/lmr10.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><f:/
 lic/lm/lmr17.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr5.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/pu
 blic/lm/lmr7.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><f:/Program Files/MiKTeX 2.9/fonts/type1/
 public/lm/lmsy7.pfb>
-Output written on "MC Ising.pdf" (7 pages, 217984 bytes).
+Output written on "MC Ising.pdf" (7 pages, 221829 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
