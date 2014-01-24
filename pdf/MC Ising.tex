@@ -94,9 +94,9 @@
 %\date{} %%Wenn kommentiert, wird das aktuelle Datum verwendet.
 \maketitle
 
-\begin{abstract}
-test
-\end{abstract}
+%\begin{abstract}
+%test
+%\end{abstract}
 %% Die schönere Version:
 %\input{deckblatt} %%Eine Datei 'deckblatt.tex' wird hierfür benötigt.
 %% ==> TeXnicCenter liefert eine mögliche Deckblattdatei
@@ -192,54 +192,135 @@ M = (1-(\sinh (\log (1+\sqrt{2})\frac{T_c}{T}))^{-4})^{\frac{1}{8}},
 \end{equation} 
 wobei
 \begin{equation}
-T_c = \frac{2J}{k_B\log(1+\sqrt{2})}
+T_c = \frac{2J}{k_B\log(1+\sqrt{2})} = 2.269\frac{J}{k_B}
 \label{eq:}
 \end{equation}
-Bei dieser kritischen Temperatur erfolgt der Phasenübergang.
+Bei dieser kritischen Temperatur erfolgt der Phasenübergang. \\
+Für die inverse Temperatur gilt dann:
+\begin{equation}
+\beta = \frac{0.441}{J}
+\label{eq:}
+\end{equation}
 
 \section{Metropolis Monte Carlo Simulation}
 Monte Carlo Simulationen bestehen aus sogenannten Zufallsexperimenten, dh. sie verwenden wahrscheinlichkeitstheoretische Erkenntnisse, um Probleme zu lösen. Einsatzgebiete sind solche Probleme, die analytisch nicht oder nur schwer zu lösen sind.\\
 Der Metropolisalgorithmus ist eine MC-Simulation, welche eine Folge von Zufallszahlen entsprechend der Boltzmannverteilung erzeugt. \\
-Der Algorithmus funktioniert wie folgt:
+Das Prinzip der "detailed balance" muss eingehalten werden:
+\begin{equation}
+\frac{P(a,b)}{P(b,a)} =  \frac{A(a,b)}{A(b,a)}
+\label{eq:detailed balance}
+\end{equation}
+P(a,b) bezeichnet die Wahrscheinlichkeit des Zustands b gegeben a, A(a,b) die Wahrscheinlichkeit, b zu akzeptieren (gegeben a). Damit lässt sich A bestimmen:
+\begin{equation}
+A(a,b) = 
+\begin{cases}
+\exp{(H_b - H_a)} & \text{wenn } H_b - H_a \geq 0 \\
+1 & \text{sonst }
+\end{cases}
+\label{eq:}
+\end{equation}
+
+
+Der Algorithmus funktioniert dann wie folgt:
 \begin{enumerate}
 	\item 
 	Wähle einen zufälligen Gitterpunkt. Dabei haben alle Gitterpunkte die gleiche Wahrscheinlichkeit gewählt zu werden.
 	\item
-	Kehre an diesem Punkt den Spin um. Berechne die Energiedifferenz $\Delta E = H(neu) - H(alt)$. Falls $\Delta E < 0$, akzeptiere den Spinflip immer. Andernfalls akzeptiere mit der Wahrscheinlichkeit $e^{-\beta \Delta E}$.
+	Schlage einen Spinflip an diesem Punkt vor. Berechne die Energiedifferenz $\Delta E = H(neu) - H(alt)$. Falls $\Delta E < 0$, akzeptiere den Spinflip immer. Andernfalls akzeptiere mit der Wahrscheinlichkeit $\exp{(-\beta \Delta E)}$.
 	\item
 	Fahre mit Schritt 1 fort.
 \end{enumerate}
 
-
+\newpage
 
 \section{Ergebnisse}
-Meine 
+In meinen Berechnungen untersucht wurden die Fälle $J=1$ und $J=-1$.\\
+Die oben behandelten thermodynamischen Grössen Magnetisierung, magnetische Suszeptibilität und spezifische Wärme wurden gegen die inverse Temperatur $\beta$ aufgetragen. Die Gittergrösse beträgt $20\times 20$. Die Simulation wurde mit 100000 Iterationen durchgeführt. Die Schrittweite ist $\Delta \beta = 0.05$.\\
+Der Phasenübergang bei der kritischen Temperatur $\beta_c = 0.44$ ist deutlich erkennbar: Für $\beta < \beta_c$ ist die Magnetisierung gering, für $\beta > \beta_c$ nahe 1.\\
+Ebenfalls zu sehen ist der Phasenübergang bei den Messgrössen Suszeptibilität und spezifische Wärme.
+
+
 \begin{figure}
 	\centering
-		\includegraphics{../Bilder/mag.png}
+		\includegraphics[width=1.00\textwidth]{../Bilder/mag.png}
 	\caption{Magnetisierung}
 	\label{fig:mag}
 \end{figure}
 
 \begin{figure}
 	\centering
-		\includegraphics{../Bilder/susz.png}
+		\includegraphics[width=1.00\textwidth]{../Bilder/susz.png}
 	\caption{Suszeptibilität}
 	\label{fig:susz}
 \end{figure}
 
 \begin{figure}
 	\centering
-		\includegraphics{../Bilder/spez.png}
+		\includegraphics[width=1.00\textwidth]{../Bilder/spez.png}
 	\caption{Spezifische Wärme}
 	\label{fig:spez}
 \end{figure}
 
 
+Einige interessante Spin-Konfigurationen werden nun bei verschiedenen Temperaturen hier dargestellt. Die Grösse des Grids ist wiederum $20\times 20$. Der Phasenübergang im 5. Bild ist gut erkennbar.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=1.00\textwidth]{../Bilder/ds2.png}
+	\caption{Verschiedene Spinkonfigurationen von $\beta=0.1$ bis $\beta=0.6$}
+	\label{fig:ds}
+\end{figure}
 
 
+%\begin{figure}
+	%\centering
+		%\includegraphics{../Bilder/d1.png}
+	%\caption{$\beta = 0.7$}
+	%\label{fig:d1}
+%\end{figure}
+%
+%\begin{figure}
+	%\centering
+		%\includegraphics{../Bilder/d2.png}
+	%\caption{$\beta = 0.6$}
+	%\label{fig:d2}
+%\end{figure}
+%
+%\begin{figure}
+	%\centering
+		%\includegraphics{../Bilder/d3.png}
+	%\caption{$\beta = 0.5$}
+	%\label{fig:d3}
+%\end{figure}
+%
+%\begin{figure}
+	%\centering
+		%\includegraphics{../Bilder/d4.png}
+	%\caption{$\beta = 0.4$}
+	%\label{fig:d4}
+%\end{figure}
+%
+%\begin{figure}
+	%\centering
+		%\includegraphics{../Bilder/d5.png}
+	%\caption{$\beta = 0.3$}
+	%\label{fig:d5}
+%\end{figure}
+%
+%\begin{figure}
+	%\centering
+		%\includegraphics{../Bilder/d6.png}
+	%\caption{$\beta = 0.2$}
+	%\label{fig:d6}
+%\end{figure}
+%
+%\begin{figure}
+	%\centering
+		%\includegraphics{../Bilder/d7.png}
+	%\caption{$\beta = 0.1$}
+	%\label{fig:d7}
+%\end{figure}
 
-\section{Code}
 
 %% Kapitel / Hauptteil des Dokumentes %%%%%%%%%%%%%%%%%%%%%%%
 %% ==> Schreiben Sie hier Ihren Text oder fügen Sie externe Dateien ein.
@@ -308,14 +389,14 @@ Meine
 %\bibliography{literatur} %Eine Datei 'literatur.bib' wird hierfür benötigt.
 
 %% Abbildungsverzeichnis
-\clearpage
-\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
-\listoffigures
+%\clearpage
+%\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+%\listoffigures
 
 %% Tabellenverzeichnis
-\clearpage
-\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
-\listoftables
+%\clearpage
+%\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+%\listoftables
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -325,7 +406,17 @@ Meine
 %% ==> Schreiben Sie hier Ihren Text oder fügen Sie externe Dateien ein.
 
 %\input{Dateiname} %Eine Datei 'Dateiname.tex' wird hierfür benötigt.
+\begin{thebibliography}{}
+\bibitem{Quelle1} Jan Kierfeld, 
 
+Computational Physics: Ising Modell, \begin{verbatim}http://t1.physik.tu-dortmund.de/kierfeld/teaching/CompPhys_13/kierfeld_CompPhys.pdf
+\end{verbatim}
+
+\bibitem{Quelle2} "Das Ising Modell mit Monte Carlo
+Methoden" Marcel Wirz, \begin{verbatim}http://www.wiese.itp.unibe.ch/theses/wirz_bachelor.pdf\end{verbatim}
+
+\bibitem{Quelle3} 
+\end{thebibliography}
 
 \end{document}
 
