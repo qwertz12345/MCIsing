@@ -2,5 +2,5 @@
 \contentsline {section}{\numberline {0.1}Ising-Modell}{3}
 \contentsline {subsection}{\numberline {0.1.1}Analytische L\"osung f\"ur 2D}{4}
 \contentsline {section}{\numberline {0.2}Metropolis Monte Carlo Simulation}{4}
-\contentsline {section}{\numberline {0.3}Ergebnisse}{6}
+\contentsline {section}{\numberline {0.3}Ergebnisse}{5}
 \vspace *{\baselineskip }

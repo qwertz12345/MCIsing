@@ -12,13 +12,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=726
-NormalPos.bottom=546
+NormalPos.bottom=523
 Class=LaTeXView
 Document=MC Ising.tex
 
 [Frame0_View0,0]
-TopLine=256
-Cursor=8298
+TopLine=265
+Cursor=9336
 
 [SessionInfo]
 FrameCount=1

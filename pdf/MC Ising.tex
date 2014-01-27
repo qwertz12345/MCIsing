@@ -89,14 +89,14 @@
 %% ==> Schreiben Sie hier Ihren Text oder fügen Sie eine externe Datei ein.
 
 %% Die einfache Version:
-\title{Metropolis Ising Modell}
+\title{Metroplis Ising Modell mit Kopplung der nächsten Nachbarn}
 \author{Michael Vogelpohl}
-%\date{} %%Wenn kommentiert, wird das aktuelle Datum verwendet.
+\date{} %%Wenn kommentiert, wird das aktuelle Datum verwendet.
 \maketitle
 
-%\begin{abstract}
-%test
-%\end{abstract}
+\begin{abstract}
+In dieser Simulation wird das Verhalten von Magnetismus in einem zweidimensionalen Atomgitter untersucht. Die verwendete Methode ist der Metropolisalgorithmus, wobei nur die Wechselwirkung zwischen benachbarten Gitterpunkten berücksichtigt wird. Man beobachtet einen Phasenübergang bei einer bestimmten Temperatur. 
+\end{abstract}
 %% Die schönere Version:
 %\input{deckblatt} %%Eine Datei 'deckblatt.tex' wird hierfür benötigt.
 %% ==> TeXnicCenter liefert eine mögliche Deckblattdatei
@@ -133,7 +133,7 @@ $<ij>$: Diese Notation beschreibt Summation nur über nächste Nachbarn von Atom i
 \\
 Eine spezielle Konfiguration von Spins im Gitter hat nach der Boltzmannverteilung die Wahrscheinlichkeit
 \begin{equation}
-W_i = \frac{e^{-\beta H_i}}{Z},
+P_i = \frac{e^{-\beta H_i}}{Z},
 \label{eq:}
 \end{equation}
 wobei $Z = \sum_{i}{e^{-\beta H_i}}$ und $\beta = \frac{1}{k_B T}$.
@@ -170,17 +170,15 @@ Wichtige Observablen im Modell sind:
 Dabei wurde folgende Notation für den Erwartungswert einer Observablen benutzt:
 \begin{equation}
 \left\langle O\right\rangle = \frac{1}{N_{iter}}\sum_{i=1}^{N_{iter}}{O_i}
-\label{eq:}
 \end{equation}
 Ausserdem bezeichnet $S_{ij}$ den Spin an der Position (i,j) in einem zweidimensionalen Gitter.
 \\
 Es werden periodische Randbedingungen verwendet. Für ein quadratisches Gitter der Grösse $n\times n$ gilt dann:
 \begin{align}
-s_{n+1,j} = s_{1,j}\\
-s_{i,n+1} = s_{i,1}\\
-s_{0,j} = s_{n,j}\\
-s_{i,0} = s_{i,n}
-\label{eq:}
+S_{n+1,j} = S_{1,j}\\
+S_{i,n+1} = S_{i,1}\\
+S_{0,j} = S_{n,j}\\
+S_{i,0} = S_{i,n}
 \end{align}
 
 \subsection{Analytische Lösung für 2D}
@@ -188,7 +186,6 @@ Die analytische Lösung für den zweidimensionalen Fall wurde von Onsager 1944 gef
 Die Magnetisierung beträgt:
 \begin{equation}
 M = (1-(\sinh (\log (1+\sqrt{2})\frac{T_c}{T}))^{-4})^{\frac{1}{8}},
-\label{eq:}
 \end{equation} 
 wobei
 \begin{equation}
@@ -199,25 +196,23 @@ Bei dieser kritischen Temperatur erfolgt der Phasenübergang. \\
 Für die inverse Temperatur gilt dann:
 \begin{equation}
 \beta = \frac{0.441}{J}
-\label{eq:}
 \end{equation}
 
 \section{Metropolis Monte Carlo Simulation}
 Monte Carlo Simulationen bestehen aus sogenannten Zufallsexperimenten, dh. sie verwenden wahrscheinlichkeitstheoretische Erkenntnisse, um Probleme zu lösen. Einsatzgebiete sind solche Probleme, die analytisch nicht oder nur schwer zu lösen sind.\\
-Der Metropolisalgorithmus ist eine MC-Simulation, welche eine Folge von Zufallszahlen entsprechend der Boltzmannverteilung erzeugt. \\
-Das Prinzip der "detailed balance" muss eingehalten werden:
+Der Metropolisalgorithmus ist eine MC-Simulation, welche eine Folge von Zuständen entsprechend der Boltzmannverteilung erzeugt. Die Metropolismethode beschreibt also Gleichgewichtszustände.
+Daher muss das Prinzip der "detailed balance"\  eingehalten werden. Dieses Prinzip sorgt für das Erreichen des thermodynamischen Gleichgewichts. 
+Detailed Balance:
 \begin{equation}
-\frac{P(a,b)}{P(b,a)} =  \frac{A(a,b)}{A(b,a)}
-\label{eq:detailed balance}
+\frac{P(b)}{P(a)} =  \frac{A(a,b)}{A(b,a)}
 \end{equation}
-P(a,b) bezeichnet die Wahrscheinlichkeit des Zustands b gegeben a, A(a,b) die Wahrscheinlichkeit, b zu akzeptieren (gegeben a). Damit lässt sich A bestimmen:
+P(a) bezeichnet die Wahrscheinlichkeit des Zustands a. A(a,b) ist die Wahrscheinlichkeit, b zu akzeptieren gegeben Zustand a. Damit lässt sich A bestimmen. Mit $P(x) = \exp{(-\beta H_x)}$:
 \begin{equation}
 A(a,b) = 
 \begin{cases}
-\exp{(H_b - H_a)} & \text{wenn } H_b - H_a \geq 0 \\
+\exp{(-\beta (H_b - H_a))} & \text{wenn } H_b - H_a \geq 0 \\
 1 & \text{sonst }
 \end{cases}
-\label{eq:}
 \end{equation}
 
 
@@ -230,47 +225,90 @@ Der Algorithmus funktioniert dann wie folgt:
 	\item
 	Fahre mit Schritt 1 fort.
 \end{enumerate}
+Da nur nächste Nachbarn in die Energieberchnung einfliessen, ist der Ausdruck für die Energiedifferenz besonders einfach:
+\begin{align*}
+\Delta E &= H(neu)- H(alt) \\
+%&= -J(-S_{i,j})(S_{i+1,j}+S_{i-1,j}+S_{i,j+1}+S_{i,j-1}) - (-J\cdot S_{i,j}(S_{i+1,j}+S_{i-1,j}+S_{i,j+1}+S_{i,j-1})) \\
+&= 2J\cdot S_{i,j}(S_{i+1,j}+S_{i-1,j}+S_{i,j+1}+S_{i,j-1}).
+\end{align*}
+Messungen an der Simulation werden nur alle N Schritte durchgeführt (N= Anzahl Spins), sodass jeder Spin in einer Messung die gleiche Wahrscheinlichkeit hat, ausgewählt zu werden.
 
-\newpage
+%\newpage
 
 \section{Ergebnisse}
-In meinen Berechnungen untersucht wurden die Fälle $J=1$ und $J=-1$.\\
-Die oben behandelten thermodynamischen Grössen Magnetisierung, magnetische Suszeptibilität und spezifische Wärme wurden gegen die inverse Temperatur $\beta$ aufgetragen. Die Gittergrösse beträgt $20\times 20$. Die Simulation wurde mit 100000 Iterationen durchgeführt. Die Schrittweite ist $\Delta \beta = 0.05$.\\
-Der Phasenübergang bei der kritischen Temperatur $\beta_c = 0.44$ ist deutlich erkennbar: Für $\beta < \beta_c$ ist die Magnetisierung gering, für $\beta > \beta_c$ nahe 1.\\
-Ebenfalls zu sehen ist der Phasenübergang bei den Messgrössen Suszeptibilität und spezifische Wärme.
+
+In meinen Berechnungen wurden die Fälle $J=1$ und $J=-1$ untersucht.\\
+Die oben behandelten thermodynamischen Grössen Magnetisierung, magnetische Suszeptibilität und spezifische Wärme wurden gegen die inverse Temperatur $\beta$ aufgetragen. Die Gittergrösse beträgt $20\times 20$. Die Simulation für J=1 wurde mit 100000 Iterationen durchgeführt, für J=-1 mit 20000. Die ersten 5000 Iterationen werden fallengelassen, um sicherzustellen bei den Messungen Gleichgewichtskonfigurationen zu erhalten. Die Schrittweite beträgt $\Delta \beta = 0.05$.\\
+\\
+Einige interessante Spin-Konfigurationen bei verschiedenen Temperaturen werden in den Abbildungen (\ref{fig:ds}),(\ref{fig:dsas}) für J=1 und J=-1 dargestellt. Die Grösse des Grids ist wiederum $20\times 20$.
+\\
+\\
+%\section{J=1}
+Für J=1 ist der Phasenübergang bei der kritischen Temperatur $\beta_c = 0.44$ deutlich erkennbar: Für $\beta < \beta_c$ ist die Magnetisierung gering, für $\beta > \beta_c$ nahe 1. Ebenfalls zu sehen ist der Phasenübergang bei den Messgrössen Suszeptibilität und spezifische Wärme.\\
+Für J=-1 ist zu beachten, dass die Anzahl der Iterationen geringer ist, da die Berechnung der Antiferromagnetisierung mehr Zeit braucht.
 
 
 \begin{figure}
 	\centering
 		\includegraphics[width=1.00\textwidth]{../Bilder/mag.png}
-	\caption{Magnetisierung}
+	\caption{Magnetisierung, J=1}
 	\label{fig:mag}
 \end{figure}
 
 \begin{figure}
 	\centering
 		\includegraphics[width=1.00\textwidth]{../Bilder/susz.png}
-	\caption{Suszeptibilität}
+	\caption{Suszeptibilität, J=1}
 	\label{fig:susz}
 \end{figure}
 
 \begin{figure}
 	\centering
 		\includegraphics[width=1.00\textwidth]{../Bilder/spez.png}
-	\caption{Spezifische Wärme}
+	\caption{Spezifische Wärme, J=1}
 	\label{fig:spez}
 \end{figure}
 
+%\section{J=-1}
 
-Einige interessante Spin-Konfigurationen werden nun bei verschiedenen Temperaturen hier dargestellt. Die Grösse des Grids ist wiederum $20\times 20$. Der Phasenübergang im 5. Bild ist gut erkennbar.
+
+%\section{Graphisches Beispiel}
+
 
 \begin{figure}
 	\centering
 		\includegraphics[width=1.00\textwidth]{../Bilder/ds2.png}
-	\caption{Verschiedene Spinkonfigurationen von $\beta=0.1$ bis $\beta=0.6$}
+	\caption{Verschiedene Spinkonfigurationen von $\beta=0.1$ bis $\beta=0.6, J=1$.}
 	\label{fig:ds}
 \end{figure}
 
+\begin{figure}
+	\centering
+		\includegraphics[width=1.00\textwidth]{../Bilder/magAnti.png}
+	\caption{Magnetisierung, J=-1}
+	\label{fig:magAnti}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=1.00\textwidth]{../Bilder/susAnti.png}
+	\caption{Suszeptibilität, J=-1}
+	\label{fig:susAnti}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=1.00\textwidth]{../Bilder/spezAnti.png}
+	\caption{Spezifische Wärme, J=-1}
+	\label{fig:spezAnti}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=1.00\textwidth]{../Bilder/dsas.png}
+	\caption{Verschiedene Spinkonfigurationen von $\beta=0.1$ bis $\beta=0.6, J=-1$.}
+	\label{fig:dsas}
+\end{figure}
 
 %\begin{figure}
 	%\centering
@@ -413,9 +451,8 @@ Computational Physics: Ising Modell, \begin{verbatim}http://t1.physik.tu-dortmun
 \end{verbatim}
 
 \bibitem{Quelle2} "Das Ising Modell mit Monte Carlo
-Methoden" Marcel Wirz, \begin{verbatim}http://www.wiese.itp.unibe.ch/theses/wirz_bachelor.pdf\end{verbatim}
+Methoden", Marcel Wirz, \begin{verbatim}http://www.wiese.itp.unibe.ch/theses/wirz_bachelor.pdf\end{verbatim}
 
-\bibitem{Quelle3} 
 \end{thebibliography}
 
 \end{document}
