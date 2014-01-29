@@ -17,8 +17,8 @@ Class=LaTeXView
 Document=MC Ising.tex
 
 [Frame0_View0,0]
-TopLine=265
-Cursor=9336
+TopLine=87
+Cursor=3353
 
 [SessionInfo]
 FrameCount=1

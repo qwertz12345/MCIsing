@@ -95,7 +95,8 @@
 \maketitle
 
 \begin{abstract}
-In dieser Simulation wird das Verhalten von Magnetismus in einem zweidimensionalen Atomgitter untersucht. Die verwendete Methode ist der Metropolisalgorithmus, wobei nur die Wechselwirkung zwischen benachbarten Gitterpunkten berücksichtigt wird. Man beobachtet einen Phasenübergang bei einer bestimmten Temperatur. 
+In dieser Simulation wird das Verhalten von Magnetismus in einem zweidimensionalen Atomgitter untersucht. Die Atome besitzen dabei einen Spin mit zwei entgegengesetzten Zuständen. Die verwendete Methode ist der Metropolisalgorithmus, wobei nur die Wechselwirkung zwischen benachbarten Gitterpunkten berücksichtigt wird. \\
+In verschiedenen physikalischen Grössen beobachtet man einen Phasenübergang bei einer bestimmten kritischen Temperatur. 
 \end{abstract}
 %% Die schönere Version:
 %\input{deckblatt} %%Eine Datei 'deckblatt.tex' wird hierfür benötigt.
@@ -240,12 +241,15 @@ Messungen an der Simulation werden nur alle N Schritte durchgeführt (N= Anzahl S
 In meinen Berechnungen wurden die Fälle $J=1$ und $J=-1$ untersucht.\\
 Die oben behandelten thermodynamischen Grössen Magnetisierung, magnetische Suszeptibilität und spezifische Wärme wurden gegen die inverse Temperatur $\beta$ aufgetragen. Die Gittergrösse beträgt $20\times 20$. Die Simulation für J=1 wurde mit 100000 Iterationen durchgeführt, für J=-1 mit 20000. Die ersten 5000 Iterationen werden fallengelassen, um sicherzustellen bei den Messungen Gleichgewichtskonfigurationen zu erhalten. Die Schrittweite beträgt $\Delta \beta = 0.05$.\\
 \\
-Einige interessante Spin-Konfigurationen bei verschiedenen Temperaturen werden in den Abbildungen (\ref{fig:ds}),(\ref{fig:dsas}) für J=1 und J=-1 dargestellt. Die Grösse des Grids ist wiederum $20\times 20$.
+Einige interessante Spin-Konfigurationen bei verschiedenen Temperaturen werden in den Abbildungen (\ref{fig:ds}),(\ref{fig:dsas}) für J=1 und J=-1 dargestellt. 
 \\
 \\
 %\section{J=1}
-Für J=1 ist der Phasenübergang bei der kritischen Temperatur $\beta_c = 0.44$ deutlich erkennbar: Für $\beta < \beta_c$ ist die Magnetisierung gering, für $\beta > \beta_c$ nahe 1. Ebenfalls zu sehen ist der Phasenübergang bei den Messgrössen Suszeptibilität und spezifische Wärme.\\
-Für J=-1 ist zu beachten, dass die Anzahl der Iterationen geringer ist, da die Berechnung der Antiferromagnetisierung mehr Zeit braucht.
+Für J=1 ist der Phasenübergang bei der kritischen Temperatur $\beta_c = 0.44$ deutlich erkennbar: Für $\beta < \beta_c$ ist die Magnetisierung gering, für $\beta > \beta_c$ nahe 1. Ebenfalls zu sehen ist der Phasenübergang bei den Messgrössen Suszeptibilität und spezifische Wärme. \\
+Für J=-1 ist zu beachten, dass die Anzahl der Iterationen geringer ist, da die Berechnung der Antiferromagnetisierung mehr Zeit braucht. 
+\\
+Ohne externes Magnetfeld erwartet man für die Messgrössen die gleichen Ergebnisse wie für J=1. In dieser Simulation weicht aber besonders die Suszeptibilität für niedrige Temperaturen vom Fall J=1 ab. 
+%Dies kann man so erklären: Für J=-1 und niedrigen Temperaturen ordnen sich die Spins in einem Schachbrettmuster an, um die Energie zu minimieren (siehe Abbildung (\ref{fig:dsas})). Daraus folgt: $\left\langle M\right\rangle = 0$. Für $J=1$ ist es dagegen energetisch günstig, wenn alle Spins in die selbe Richtung zeigen. Daher: $\left\langle M\right\rangle \neq 0$. Somit sind die Werte der Suszeptibilitäten verschieden.
 
 
 \begin{figure}
